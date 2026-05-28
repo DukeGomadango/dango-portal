@@ -116,9 +116,23 @@ export default function DangoGame({ position = [0, 0, 0] }: DangoGameProps) {
     const scrollY = window.scrollY;
     const viewHeight = window.innerHeight;
 
-    const initialPos = new THREE.Vector3(position[0], position[1], position[2]);
-    const focusPos = new THREE.Vector3(1.8, 0, 0); // 右側にフォーカス (カードが左配置のため)
-    const hiddenPos = new THREE.Vector3(4.0, 2.0, -2.0); // 退避位置
+    const { width: viewportWidth } = state.viewport;
+    const isMobile = viewportWidth < 6.0;
+    
+    // モバイル・タブレット時の表示調整 (画面幅に合わせてスケールダウン & 中央寄せ)
+    const widthFactor = Math.min(1.0, viewportWidth / 7.5);
+
+    const initialPos = new THREE.Vector3(
+      position[0] * widthFactor,
+      position[1] * (isMobile ? 0.75 : 1.0),
+      position[2]
+    );
+    const focusPos = isMobile
+      ? new THREE.Vector3(0, 1.25, -0.2) // モバイル時は中央上部に配置してカードの邪魔をしない
+      : new THREE.Vector3(1.8, 0, 0); // 右側にフォーカス (カードが左配置のため)
+    const hiddenPos = isMobile
+      ? new THREE.Vector3(0, -3.5, -2.0)
+      : new THREE.Vector3(4.0, 2.0, -2.0); // 退避位置
 
     let targetScale = 1.0;
     let interactive = false;
@@ -129,7 +143,7 @@ export default function DangoGame({ position = [0, 0, 0] }: DangoGameProps) {
     if (scrollY < viewHeight * 0.3) {
       baseTargetPos.copy(initialPos);
       baseTargetPos.y += Math.cos(time * 0.9) * 0.15; // 待機浮遊
-      targetScale = 0.65;
+      targetScale = 0.65 * widthFactor;
       interactive = true;
     } else if (targetElement) {
       const rect = targetElement.getBoundingClientRect();
@@ -141,15 +155,15 @@ export default function DangoGame({ position = [0, 0, 0] }: DangoGameProps) {
 
       if (activeWeight > 0.05) {
         baseTargetPos.lerpVectors(hiddenPos, focusPos, activeWeight);
-        targetScale = 0.3 + activeWeight * 0.9;
+        targetScale = (0.3 + activeWeight * 0.9) * widthFactor;
         interactive = activeWeight > 0.7;
       } else {
         baseTargetPos.copy(hiddenPos);
-        targetScale = 0.2;
+        targetScale = 0.2 * widthFactor;
       }
     } else {
       baseTargetPos.copy(hiddenPos);
-      targetScale = 0.2;
+      targetScale = 0.2 * widthFactor;
     }
 
     // --- マウスとの距離による「逃避（Shy Monster）」ロジック (インタラクティブな時のみ) ---
