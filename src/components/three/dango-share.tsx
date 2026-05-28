@@ -16,7 +16,7 @@ import { gsap } from "gsap";
 const DangoShareShader = {
   uniforms: {
     uTime: { value: 0 },
-    uColor: { value: new THREE.Color("#ebaf2d") },
+    uColor: { value: new THREE.Color("#ffb700") },
     uGlowColor: { value: new THREE.Color("#fffbeb") },
     uDeform: { value: 0.0 },
   },
@@ -74,13 +74,13 @@ const DangoShareShader = {
       float specular = pow(max(0.0, dot(reflectDir, vec3(0.0, 1.0, 0.5))), 8.0);
       float highSpecular = pow(max(0.0, dot(reflectDir, vec3(0.5, 0.8, 0.2))), 32.0);
 
-      // メタリックカラーブレンド
-      vec3 metalColor = mix(uColor * 0.6, uGlowColor, specular * 0.7);
-      metalColor += vec3(highSpecular * 0.9);
+      // メタリックカラーブレンド (uColorの明度を最大化し、鏡面反射の反射率を向上)
+      vec3 metalColor = mix(uColor * 0.95, uGlowColor, specular * 0.85);
+      metalColor += vec3(highSpecular * 1.1);
 
-      // フレネル反射
+      // フレネル反射 (輪郭線をより上品に白金ゴールドで際立たせる)
       float fresnel = pow(1.0 - max(0.0, dot(normal, viewDir)), 3.0);
-      vec3 finalColor = mix(metalColor, uGlowColor, fresnel * 0.5);
+      vec3 finalColor = mix(metalColor, uGlowColor, fresnel * 0.55);
       
       // ドラッグ時の変形ストレスによる色の励起発光
       finalColor += uGlowColor * uDeform * 0.15;
