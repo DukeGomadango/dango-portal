@@ -111,33 +111,8 @@ export default function NavHeader() {
       </header>
 
       {/* ============================================ */}
-      {/* モバイル用コントロールポッド (画面下部固定フローティング) */}
-      {/* デバイスの物理的なホームインジケータ（Safe Area）を尊重した極上の人間工学設計 */}
-      {/* ============================================ */}
-      <div 
-        className="fixed inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none transition-all duration-300"
-        style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
-      >
-        <button
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          className={`flex items-center gap-3 px-6 py-3.5 rounded-full border shadow-2xl transition-all duration-300 active:scale-95 backdrop-blur-xl
-            ${
-              isMobileMenuOpen
-                ? "bg-background/90 border-white/10 text-foreground scale-95"
-                : "bg-background/60 border-white/5 text-foreground/80 hover:bg-background/80"
-            }`}
-        >
-          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${activeAccent} ${isMobileMenuOpen ? "" : "animate-pulse"}`} />
-          <span className="font-display text-xs font-black tracking-widest uppercase">
-            {isMobileMenuOpen ? "CLOSE" : "STREAMVERSE"}
-          </span>
-          <div className="w-[1px] h-3.5 bg-white/10" />
-          {isMobileMenuOpen ? <X size={15} /> : <Menu size={15} />}
-        </button>
-      </div>
-
-      {/* ============================================ */}
       {/* モバイル用スライドアップメニュー (ドロワー) */}
+      {/* 意図的なデザイン仕様：文字の可読性を保ちつつ、背景のオーロラを上品に透けさせる bg-background/85 + backdrop-blur-3xl */}
       {/* ============================================ */}
       <div
         className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-md md:hidden transition-all duration-500 ease-in-out pointer-events-auto
@@ -145,10 +120,11 @@ export default function NavHeader() {
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute bottom-0 left-0 right-0 bg-background/95 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-6 transition-transform duration-500 ease-out shadow-2xl overflow-y-auto max-h-[88vh] max-h-[88svh]
+          className={`absolute bottom-0 left-0 right-0 bg-background/85 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-6 transition-transform duration-500 ease-out shadow-2xl overflow-y-auto max-h-[88vh] max-h-[88svh]
             ${isMobileMenuOpen ? "translate-y-0" : "translate-y-full"}`}
           style={{ 
-            paddingBottom: "calc(7rem + env(safe-area-inset-bottom))",
+            backdropFilter: "blur(30px) saturate(180%)",
+            WebkitBackdropFilter: "blur(30px) saturate(180%)",
           }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -237,7 +213,40 @@ export default function NavHeader() {
               </>
             )}
           </button>
+
+          {/* 物理的な下部スクロールスペーサー (コラプスバグ対策) */}
+          {/* ブラウザのバグによる padding-bottom のコラプスを完全に防ぎ、CLOSEボタンとの重なりを100%排除します */}
+          <div 
+            className="w-full shrink-0" 
+            style={{ height: "calc(6.5rem + env(safe-area-inset-bottom))" }} 
+          />
         </div>
+      </div>
+
+      {/* ============================================ */}
+      {/* モバイル用コントロールポッド (画面下部固定フローティング) */}
+      {/* DOM順序をスライドドロワーの後に配置することで、積層コンテキストバグを完全回避し、開いた瞬間に最前面に確実に描画します */}
+      {/* ============================================ */}
+      <div 
+        className="fixed inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none transition-all duration-300"
+        style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+      >
+        <button
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          className={`flex items-center gap-3 px-6 py-3.5 rounded-full border shadow-2xl transition-all duration-300 active:scale-95 backdrop-blur-xl
+            ${
+              isMobileMenuOpen
+                ? "bg-background/90 border-white/10 text-foreground scale-95"
+                : "bg-background/60 border-white/5 text-foreground/80 hover:bg-background/80"
+            }`}
+        >
+          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${activeAccent} ${isMobileMenuOpen ? "" : "animate-pulse"}`} />
+          <span className="font-display text-xs font-black tracking-widest uppercase">
+            {isMobileMenuOpen ? "CLOSE" : "STREAMVERSE"}
+          </span>
+          <div className="w-[1px] h-3.5 bg-white/10" />
+          {isMobileMenuOpen ? <X size={15} /> : <Menu size={15} />}
+        </button>
       </div>
     </>
   );
