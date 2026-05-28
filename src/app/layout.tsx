@@ -64,17 +64,17 @@ export default function RootLayout({
           <div className="fixed inset-0 -z-50 overflow-hidden bg-background pointer-events-none">
             {/* ボール1 (だんごグリーン) */}
             <div 
-              className="absolute top-[-20%] left-[-15%] w-[60vw] h-[60vw] rounded-full blur-[140px] animate-aurora-slow opacity-30" 
+              className="absolute top-[-10%] left-[-20%] w-[80vmax] h-[80vmax] sm:w-[60vw] sm:h-[60vw] rounded-full blur-[120px] sm:blur-[140px] animate-aurora-slow opacity-35 sm:opacity-30" 
               style={{ backgroundColor: "hsl(150, 85%, 55%)" }}
             />
             {/* ボール2 (だんごピンク) */}
             <div 
-              className="absolute bottom-[-20%] right-[-15%] w-[55vw] h-[55vw] rounded-full blur-[140px] animate-aurora-fast opacity-25" 
+              className="absolute bottom-[-10%] right-[-20%] w-[75vmax] h-[75vmax] sm:w-[55vw] sm:h-[55vw] rounded-full blur-[120px] sm:blur-[140px] animate-aurora-fast opacity-30 sm:opacity-25" 
               style={{ backgroundColor: "hsl(330, 95%, 65%)" }}
             />
             {/* ボール3 (だんごイエロー) */}
             <div 
-              className="absolute top-[30%] left-[25%] w-[45vw] h-[45vw] rounded-full blur-[120px] animate-aurora-slow opacity-20" 
+              className="absolute top-[35%] left-[10%] w-[65vmax] h-[65vmax] sm:w-[45vw] sm:h-[45vw] rounded-full blur-[100px] sm:blur-[120px] animate-aurora-slow opacity-25 sm:opacity-20" 
               style={{ backgroundColor: "hsl(45, 95%, 55%)" }}
             />
             {/* 超極細のサイバーグリッドでハイエンド感を演出 */}
