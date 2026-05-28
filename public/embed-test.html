@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dango Header — 埋め込みテスト</title>
+  <style>
+    /* ── 外部アプリをシミュレートする最小限のスタイル ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0a0b10;
+      color: #e2e8f0;
+      line-height: 1.7;
+      /* デスクトップ時は共通ヘッダーの高さ分だけ上部に余白を確保 */
+      padding-top: 92px;
+    }
+
+    @media (max-width: 767px) {
+      body { padding-top: 0; }
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 120px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #10e678, #f05aa0, #ebaf2d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      color: #f8fafc;
+    }
+
+    p {
+      color: rgba(248, 250, 252, 0.6);
+      margin-bottom: 16px;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: hsl(150, 85%, 55%);
+    }
+
+    pre {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      font-size: 13px;
+      line-height: 1.8;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: rgba(248, 250, 252, 0.7);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+
+    .badge-green {
+      background: hsla(150, 85%, 55%, 0.1);
+      color: hsl(150, 85%, 55%);
+      border: 1px solid hsla(150, 85%, 55%, 0.2);
+    }
+
+    .test-section {
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .test-section h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(248, 250, 252, 0.9);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .test-section p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .attr-demo {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .attr-btn {
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(248, 250, 252, 0.7);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 200ms;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .attr-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+    }
+
+    .attr-btn.active {
+      background: hsla(150, 85%, 55%, 0.15);
+      border-color: hsla(150, 85%, 55%, 0.3);
+      color: hsl(150, 85%, 55%);
+    }
+
+    .spacer {
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(248, 250, 252, 0.15);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border: 1px dashed rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════
+       共通ヘッダーの埋め込み（これが他アプリに追加する2行）
+       ═══════════════════════════════════════════════════ -->
+  <dango-header active-tool="calendar"></dango-header>
+  <script src="./dango-header.js"></script>
+
+  <!-- ═══════════════════════════════════════════════════
+       テストコンテンツ（外部アプリのページをシミュレート）
+       ═══════════════════════════════════════════════════ -->
+  <div class="container">
+    <span class="badge badge-green">Integration Test</span>
+    <h1>Dango Header 埋め込みテスト</h1>
+    <p>
+      このページは <code>&lt;dango-header&gt;</code> Web Component の動作確認用です。
+      実際の外部アプリ（カレンダー・シェアリンク等）にこのヘッダーを埋め込んだ場合の
+      表示・挙動をシミュレートしています。
+    </p>
+
+    <h2>1. 埋め込みコード</h2>
+    <p>各アプリの <code>layout.tsx</code> に以下の2行を追加するだけ：</p>
+    <pre>&lt;dango-header active-tool="calendar"&gt;&lt;/dango-header&gt;
+&lt;Script src="https://dango-portal.vercel.app/dango-header.js" strategy="afterInteractive" /&gt;</pre>
+
+    <h2>2. 動作テスト</h2>
+
+    <div class="test-section">
+      <h3>active-tool 属性の切り替え</h3>
+      <p>
+        ボタンをクリックすると <code>active-tool</code> 属性が動的に変更され、
+        デスクトップナビの対応リンクにアクティブインジケータ（光る下線）が表示されます。
+      </p>
+      <div class="attr-demo" id="attr-demo">
+        <button class="attr-btn" data-tool="counter" onclick="setActiveTool('counter')">Counter</button>
+        <button class="attr-btn active" data-tool="calendar" onclick="setActiveTool('calendar')">Calendar</button>
+        <button class="attr-btn" data-tool="share" onclick="setActiveTool('share')">Share Link</button>
+        <button class="attr-btn" data-tool="game" onclick="setActiveTool('game')">Kakurenbo</button>
+        <button class="attr-btn" data-tool="" onclick="setActiveTool('')">None</button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>スクロール検証</h3>
+      <p>
+        下にスクロールすると、デスクトップヘッダーの背景が透明からガラスモーフィズムに
+        トランジションし、パディングが縮小します。
+      </p>
+    </div>
+
+    <div class="test-section">
+      <h3>モバイル検証</h3>
+      <p>
+        ブラウザ幅を768px以下に縮めると、デスクトップヘッダーが非表示になり、
+        画面下部に「STREAMVERSE」フローティングポッドが出現します。
+        タップするとスライドアップドロワーが開きます。
+      </p>
+    </div>
+
+    <div class="test-section">
+      <h3>Shadow DOM スタイル隔離</h3>
+      <p>
+        このページの CSS（<code>body</code> のフォントや色設定）が
+        <code>&lt;dango-header&gt;</code> 内部のスタイルに影響を与えていないことを確認してください。
+        逆に、ヘッダーの CSS がこのページのレイアウトを崩していないことも確認します。
+      </p>
+    </div>
+
+    <div class="test-section">
+      <h3>ログインボタン</h3>
+      <p>
+        デスクトップヘッダーの「ログイン」ボタン、またはモバイルドロワーの
+        「DANGO ID でログイン」ボタンをクリックすると、画面上部にトースト通知
+        「🍡 ログイン機能は近日公開予定です」が表示されます。
+      </p>
+    </div>
+
+    <h2>3. 確認項目チェックリスト</h2>
+    <pre>[ ] デスクトップ: ガラスヘッダーが上部に固定表示される
+[ ] デスクトップ: スクロールで背景ぼかし＋パディング縮小のトランジション
+[ ] デスクトップ: ブランドロゴのホバーでオーブが180°回転
+[ ] デスクトップ: アクティブツールに光る下線インジケータ
+[ ] デスクトップ: ログインボタンクリックでトースト表示
+[ ] モバイル: フローティングポッドが画面下部に表示
+[ ] モバイル: ポッドのオーブがパルスアニメーション
+[ ] モバイル: タップでドロワーがスライドアップ
+[ ] モバイル: ドロワー内のナビカードが正しく表示
+[ ] モバイル: 背景オーバーレイクリックでドロワーが閉じる
+[ ] モバイル: ドロワー開閉でポッドのラベルが STREAMVERSE ⇄ CLOSE 切替
+[ ] Shadow DOM: ホストのCSSがヘッダー内部に漏れていない
+[ ] Shadow DOM: ヘッダーのCSSがホストに漏れていない
+[ ] トースト: 表示→2.5秒後にフェードアウト
+[ ] Google Fonts: Outfit / Syne が正しくロードされている</pre>
+
+    <!-- スクロール確認用のスペーサー -->
+    <div class="spacer">↕ スクロール確認用スペース</div>
+  </div>
+
+  <script>
+    /**
+     * active-tool 属性をリアルタイムに切り替えるデモ
+     */
+    function setActiveTool(toolId) {
+      var header = document.querySelector("dango-header");
+      if (!header) return;
+
+      if (toolId) {
+        header.setAttribute("active-tool", toolId);
+      } else {
+        header.removeAttribute("active-tool");
+      }
+
+      /* ボタンのアクティブ状態を更新 */
+      var buttons = document.querySelectorAll("#attr-demo .attr-btn");
+      for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        if (btn.getAttribute("data-tool") === toolId) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
