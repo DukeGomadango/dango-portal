@@ -112,8 +112,12 @@ export default function NavHeader() {
 
       {/* ============================================ */}
       {/* モバイル用コントロールポッド (画面下部固定フローティング) */}
+      {/* デバイスの物理的なホームインジケータ（Safe Area）を尊重した極上の人間工学設計 */}
       {/* ============================================ */}
-      <div className="fixed bottom-6 inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none">
+      <div 
+        className="fixed inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none transition-all duration-300"
+        style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+      >
         <button
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           className={`flex items-center gap-3 px-6 py-3.5 rounded-full border shadow-2xl transition-all duration-300 active:scale-95 backdrop-blur-xl
@@ -141,8 +145,11 @@ export default function NavHeader() {
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute bottom-0 left-0 right-0 bg-background/95 border-t border-white/10 rounded-t-[32px] p-8 pb-28 flex flex-col gap-8 transition-transform duration-500 ease-out shadow-2xl
+          className={`absolute bottom-0 left-0 right-0 bg-background/95 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-8 transition-transform duration-500 ease-out shadow-2xl
             ${isMobileMenuOpen ? "translate-y-0" : "translate-y-full"}`}
+          style={{ 
+            paddingBottom: "calc(7rem + env(safe-area-inset-bottom))",
+          }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* ドロワーの引き手インジケータ */}
