@@ -145,7 +145,7 @@ export default function NavHeader() {
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute bottom-0 left-0 right-0 bg-background/95 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-8 transition-transform duration-500 ease-out shadow-2xl
+          className={`absolute bottom-0 left-0 right-0 bg-background/95 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-6 transition-transform duration-500 ease-out shadow-2xl overflow-y-auto max-h-[88vh] max-h-[88svh]
             ${isMobileMenuOpen ? "translate-y-0" : "translate-y-full"}`}
           style={{ 
             paddingBottom: "calc(7rem + env(safe-area-inset-bottom))",
