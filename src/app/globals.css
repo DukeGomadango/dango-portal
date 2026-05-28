@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0b0e;
+  --foreground: #f8fafc;
+  
+  --dango-green: 150 85% 55%;
+  --dango-pink: 330 95% 65%;
+  --dango-yellow: 45 95% 55%;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-display: var(--font-syne), sans-serif;
+  
+  --color-dango-green: hsl(var(--dango-green));
+  --color-dango-pink: hsl(var(--dango-pink));
+  --color-dango-yellow: hsl(var(--dango-yellow));
+  
+  --animate-aurora-slow: aurora-slow 25s infinite alternate ease-in-out;
+  --animate-aurora-fast: aurora-fast 18s infinite alternate ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes aurora-slow {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(80px, 50px) rotate(120deg) scale(1.2);
+  }
+  100% {
+    transform: translate(-40px, -80px) rotate(240deg) scale(0.9);
   }
 }
 
+@keyframes aurora-fast {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1.1);
+  }
+  50% {
+    transform: translate(-100px, 80px) rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform: translate(60px, -40px) rotate(-360deg) scale(1.3);
+  }
+}
+
+/* 高級感あふれるベーススタイル */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  font-feature-settings: "palt" 1; /* 和文プロポーショナルメトリクス（美しいカーニング） */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism カスタムクラス */
+.glass-panel {
+  background: rgba(15, 17, 22, 0.45);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-glow-green {
+  box-shadow: 0 0 40px rgba(16, 230, 120, 0.04), inset 0 0 12px rgba(255, 255, 255, 0.02);
+  border-color: rgba(16, 230, 120, 0.15);
+}
+
+.glass-panel-glow-pink {
+  box-shadow: 0 0 40px rgba(240, 90, 160, 0.04), inset 0 0 12px rgba(255, 255, 255, 0.02);
+  border-color: rgba(240, 90, 160, 0.15);
+}
+
+.glass-panel-glow-yellow {
+  box-shadow: 0 0 40px rgba(235, 175, 45, 0.04), inset 0 0 12px rgba(255, 255, 255, 0.02);
+  border-color: rgba(235, 175, 45, 0.15);
+}
+
+/* 超極細スクロールバーのカスタマイズ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0b0e;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 230, 120, 0.5); /* ホバー時はだんごグリーンで発光 */
+}
+
+/* アナログ質感を醸し出す微細ノイズレイヤー */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+}
+
+/* ホログラム数値ポップアップ用アニメーション */
+.animate-float-fade {
+  animation: float-fade-out 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes float-fade-out {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6) rotate(-15deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, -10px) scale(1.1) rotate(0deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(calc(var(--target-x) * 0.4), calc(var(--target-y) * 0.4)) scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--target-x), var(--target-y)) scale(0.8) rotate(15deg);
+  }
 }

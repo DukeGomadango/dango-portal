@@ -1,65 +1,82 @@
-import Image from "next/image";
+"use client";
 
+import React, { useRef } from "react";
+import HeroTitle from "@/components/hero-title";
+import HeroCanvas from "@/components/three/hero-canvas";
+import ScrollIndicator from "@/components/scroll-indicator";
+import ToolSection from "@/components/tool-section";
+import NavHeader from "@/components/nav-header";
+import { DANGO_TOOLS } from "@/lib/tool-data";
+
+/**
+ * メインポータルページ (Dango Streamverse)
+ * 
+ * ベストプラクティスに基づき、3Dキャンバス (HeroCanvas) をページ全体に fixed 配置。
+ * ルートコンテナの ref (containerRef) を Canvas の eventSource としてバインドすることで、
+ * イベント透過でありながら、だんごオブジェクトへの3Dインタラクションを完璧に両立します。
+ */
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div ref={containerRef} className="relative w-full min-h-screen">
+      {/* ナビゲーションヘッダー */}
+      <NavHeader />
+
+      {/* ============================================ */}
+      {/* 常に画面全体に固定される R3F 3D キャンバス層 */}
+      {/* ============================================ */}
+      <HeroCanvas eventSource={containerRef} />
+
+      {/* ============================================ */}
+      {/* ヒーローセクション: 巨大タイポグラフィ + スクロール誘導 */}
+      {/* ============================================ */}
+      <section className="relative pointer-events-none" id="hero" style={{ zIndex: 10 }}>
+        <HeroTitle />
+        <ScrollIndicator />
+      </section>
+
+      {/* ============================================ */}
+      {/* ツール紹介セクション ×4 (スクロール駆動) */}
+      {/* ============================================ */}
+      <div className="relative z-10 w-full">
+        {DANGO_TOOLS.map((tool, index) => (
+          <ToolSection key={tool.id} tool={tool} index={index} />
+        ))}
+      </div>
+
+      {/* ============================================ */}
+      {/* フッター */}
+      {/* ============================================ */}
+      <footer className="relative z-10 py-16 px-6 border-t border-white/5 bg-background/30 backdrop-blur-md pointer-events-auto">
+        <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* ロゴ */}
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-dango-green via-dango-pink to-dango-yellow" />
+            <span className="font-display text-lg font-bold tracking-tight text-foreground/80">
+              Dango Streamverse
+            </span>
+          </div>
+
+          {/* ナビリンク */}
+          <nav className="flex items-center gap-6">
+            {DANGO_TOOLS.map((tool) => (
+              <a
+                key={tool.id}
+                href={`#tool-${tool.id}`}
+                className="text-xs font-sans tracking-wider text-foreground/30 hover:text-foreground/70 transition-colors duration-300 uppercase"
+              >
+                {tool.nameEn.replace("Dango ", "")}
+              </a>
+            ))}
+          </nav>
+
+          {/* コピーライト */}
+          <p className="text-xs font-sans text-foreground/20 tracking-wider">
+            &copy; {new Date().getFullYear()} Dukegomadango
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
