@@ -113,7 +113,7 @@ export default function NavHeader() {
       {/* ============================================ */}
       {/* モバイル用コントロールポッド (画面下部固定フローティング) */}
       {/* ============================================ */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden pointer-events-auto select-none">
+      <div className="fixed bottom-6 inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none">
         <button
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           className={`flex items-center gap-3 px-6 py-3.5 rounded-full border shadow-2xl transition-all duration-300 active:scale-95 backdrop-blur-xl

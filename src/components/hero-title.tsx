@@ -131,7 +131,7 @@ export default function HeroTitle() {
       {/* 単語内の文字が途中で改行されるのを防ぐため、単語ごとに whitespace-nowrap のコンテナで包み、flex-wrap の gap で単語間隔を制御します */}
       <h1
         ref={titleRef}
-        className="font-display text-[10vw] sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em] text-center select-text"
+        className="font-display text-[7.5vw] sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em] text-center select-text"
         style={{
           pointerEvents: "auto",
         }}
