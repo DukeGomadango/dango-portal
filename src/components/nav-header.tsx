@@ -120,11 +120,12 @@ export default function NavHeader() {
         onClick={() => setIsMobileMenuOpen(false)}
       >
         <div
-          className={`absolute bottom-0 left-0 right-0 bg-background/85 border-t border-white/10 rounded-t-[32px] p-8 flex flex-col gap-6 transition-transform duration-500 ease-out shadow-2xl overflow-y-auto max-h-[88vh] max-h-[88svh]
+          className={`absolute bottom-0 left-0 right-0 bg-background/85 border-t border-white/10 rounded-t-[32px] p-8 pb-28 flex flex-col gap-6 transition-transform duration-500 ease-out shadow-2xl overflow-y-auto max-h-[88vh] max-h-[88svh]
             ${isMobileMenuOpen ? "translate-y-0" : "translate-y-full"}`}
           style={{ 
             backdropFilter: "blur(30px) saturate(180%)",
             WebkitBackdropFilter: "blur(30px) saturate(180%)",
+            paddingBottom: "calc(7rem + env(safe-area-inset-bottom, 0px))",
           }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -228,8 +229,8 @@ export default function NavHeader() {
       {/* DOM順序をスライドドロワーの後に配置することで、積層コンテキストバグを完全回避し、開いた瞬間に最前面に確実に描画します */}
       {/* ============================================ */}
       <div 
-        className="fixed inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none transition-all duration-300"
-        style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+        className="fixed bottom-6 inset-x-0 mx-auto w-max z-50 md:hidden pointer-events-auto select-none transition-all duration-300"
+        style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))" }}
       >
         <button
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
