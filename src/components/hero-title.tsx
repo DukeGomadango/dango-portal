@@ -24,8 +24,7 @@ export default function HeroTitle() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const badgeRef = useRef<HTMLSpanElement>(null);
 
-  const titleText = "DANGO STREAMVERSE";
-  const charsArray = titleText.split("");
+  const titleWords = ["DANGO", "STREAMVERSE"];
 
   useGSAP(() => {
     const container = containerRef.current;
@@ -129,30 +128,34 @@ export default function HeroTitle() {
 
       {/* メインタイトル: 巨大タイポグラフィ (Syne) */}
       {/* ブラウザバグを回避するため -webkit-background-clip および -webkit-text-fill-color をインラインで強制指定 */}
+      {/* 単語内の文字が途中で改行されるのを防ぐため、単語ごとに whitespace-nowrap のコンテナで包み、flex-wrap の gap で単語間隔を制御します */}
       <h1
         ref={titleRef}
-        className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none flex flex-wrap justify-center text-center select-text"
+        className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em] text-center select-text"
         style={{
           pointerEvents: "auto",
         }}
       >
-        {charsArray.map((char, index) => (
-          <span
-            key={`${char}-${index}`}
-            // will-change-transform や opacity-0 のようなGPUアクセラレーション・初期非表示クラスを廃止し、
-            // 描画エラー時のフォールバックテキスト表示を保証
-            className="hero-title-char inline-block"
-            style={{
-              display: "inline-block",
-              minWidth: char === " " ? "0.3em" : "auto",
-              background: "linear-gradient(to bottom, #ffffff 0%, #f1f5f9 60%, #94a3b8 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            }}
-          >
-            {char === " " ? "\u00A0" : char}
+        {titleWords.map((word, wordIndex) => (
+          <span key={`word-${wordIndex}`} className="inline-block whitespace-nowrap">
+            {word.split("").map((char, charIndex) => (
+              <span
+                key={`${char}-${charIndex}`}
+                // will-change-transform や opacity-0 のようなGPUアクセラレーション・初期非表示クラスを廃止し、
+                // 描画エラー時のフォールバックテキスト表示を保証
+                className="hero-title-char inline-block"
+                style={{
+                  display: "inline-block",
+                  background: "linear-gradient(to bottom, #ffffff 0%, #f1f5f9 60%, #94a3b8 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                }}
+              >
+                {char}
+              </span>
+            ))}
           </span>
         ))}
       </h1>
