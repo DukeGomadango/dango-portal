@@ -39,28 +39,28 @@
       label: "Counter",
       color: "hsl(150, 85%, 55%)",
       colorBg: "hsla(150, 85%, 55%, 0.1)",
-      url: "https://app-live-counter-suite.vercel.app",
+      url: "https://dango-tool.vercel.app/",
     },
     {
       id: "calendar",
-      label: "Calendar",
+      label: "Schedule",
       color: "hsl(330, 95%, 65%)",
       colorBg: "hsla(330, 95%, 65%, 0.1)",
-      url: "https://rank-calendar-app.vercel.app",
+      url: "https://dango-schedule.vercel.app/",
     },
     {
       id: "share",
       label: "Share Link",
       color: "hsl(45, 95%, 55%)",
       colorBg: "hsla(45, 95%, 55%, 0.1)",
-      url: "https://share-link-app.vercel.app",
+      url: "https://dango-share-link.vercel.app/",
     },
     {
       id: "game",
       label: "Kakurenbo",
       color: "hsl(270, 80%, 65%)",
       colorBg: "hsla(270, 80%, 65%, 0.1)",
-      url: "https://dango-kakurenbo.vercel.app",
+      url: "https://dango-kakurenbo.vercel.app/",
     },
   ];
 
