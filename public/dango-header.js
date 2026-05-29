@@ -804,7 +804,7 @@
         ? this.shadowRoot.getElementById("dh")
         : null;
       if (!header) return;
-      if (window.scrollY > 20) {
+      if (window.scrollY > 20 || !this._isPortal) {
         header.classList.add("scrolled");
       } else {
         header.classList.remove("scrolled");
