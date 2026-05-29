@@ -165,7 +165,7 @@ export default function HeroTitle() {
         ref={subtitleRef}
         className="mt-6 max-w-xl text-lg sm:text-xl text-foreground/60 font-sans font-light tracking-wide opacity-0 pointer-events-auto select-text"
       >
-        配信をスマートでイケてるものに。
+        配信を、洗練された体験へ。
         <br className="sm:hidden" />
         4つのツールが、ひとつのエコシステムへ。
       </p>

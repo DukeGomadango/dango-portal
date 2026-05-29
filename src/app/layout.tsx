@@ -21,12 +21,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dango-portal.com"),
   title: "だんごポータル | Dango Streamverse",
-  description: "配信をスマートでイケてるものに。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
+  description: "配信を、洗練された体験へ。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
   keywords: ["配信ツール", "ライブ配信", "だんごツール", "だんごカレンダー", "配信カウンター", "だんごシェアリンク"],
   openGraph: {
     title: "だんごポータル | Dango Streamverse",
-    description: "配信をスマートでイケてるものに。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
+    description: "配信を、洗練された体験へ。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
     url: "https://dango-portal.com",
     siteName: "Dango Streamverse",
     images: [
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "だんごポータル | Dango Streamverse",
-    description: "配信をスマートでイケてるものに。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
+    description: "配信を、洗練された体験へ。だんごツールファミリーが一元化されたプレミアム配信ツールスイートポータルサイト。",
     images: ["/ogp.png"],
   },
 };

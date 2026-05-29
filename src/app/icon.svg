@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Gradient for outer ring and inner dot -->
+    <linearGradient id="dango-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1ae678" /> <!-- Green: hsl(150, 85%, 55%) -->
+      <stop offset="50%" stop-color="#f24e9c" /> <!-- Pink: hsl(330, 95%, 65%) -->
+      <stop offset="100%" stop-color="#f7b731" /> <!-- Yellow: hsl(45, 95%, 55%) -->
+    </linearGradient>
+    
+    <!-- Glow filter for premium high-end aesthetics -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Deep premium dark circle background for readability on any tab theme (light/dark) -->
+  <circle cx="256" cy="256" r="240" fill="#05060b" stroke="rgba(255, 255, 255, 0.05)" stroke-width="4" />
+  
+  <!-- Outer gradient ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#dango-grad)" stroke-width="20" filter="url(#glow)" />
+  
+  <!-- Inner gradient dot representing the dango core -->
+  <circle cx="256" cy="256" r="85" fill="url(#dango-grad)" filter="url(#glow)" />
+</svg>
