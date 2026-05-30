@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     description: "配信を、洗練された体験へ。4つのだんごツールファミリーが一元化された、プレミアム配信ツールスイート「Dango Streamverse」。",
     images: ["/ogp.png"],
   },
+  verification: {
+    google: "7fPwEgVdd4XychUawn3dhUgNBMjppQA8NRHLVBVs__I",
+  },
 };
 
 export default function RootLayout({

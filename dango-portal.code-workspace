@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../dango-kakurenbo"
+		},
+		{
+			"path": "../file-share-app"
+		},
+		{
+			"path": "../人数カウントアプリ"
+		},
+		{
+			"path": "../Calendar-app/Rank-Calendar-App"
+		}
+	],
+	"settings": {}
+}
