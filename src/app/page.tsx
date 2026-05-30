@@ -22,7 +22,10 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      setIsOgpMode(params.get("ogp") === "true");
+      const isOgp = params.get("ogp") === "true";
+      if (isOgp) {
+        setTimeout(() => setIsOgpMode(true), 0);
+      }
     }
   }, []);
 

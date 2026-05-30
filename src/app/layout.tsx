@@ -21,14 +21,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dango-portal.com"),
+  metadataBase: new URL("https://dango-streamverse.vercel.app"),
   title: "Dango Streamverse | だんごツール統合ポータル",
   description: "配信を、洗練された体験へ。4つのだんごツールファミリーが一元化された、プレミアム配信ツールスイート「Dango Streamverse」。",
   keywords: ["配信ツール", "ライブ配信", "だんごツール", "だんごカレンダー", "配信カウンター", "だんごシェアリンク"],
   openGraph: {
     title: "Dango Streamverse | だんごツール統合ポータル",
-    description: "配信を、洗練された体験へ。4つのだんごツールファミリーが一元化された、プレミアム配信ツールスイート「Dango Streamverse」。",
-    url: "https://dango-portal.com",
+    description: "配信を、洗練された体験へ。4つのだんごツールファミリーが一元化された, プレミアム配信ツールスイート「Dango Streamverse」。",
+    url: "https://dango-streamverse.vercel.app",
     siteName: "Dango Streamverse",
     images: [
       {

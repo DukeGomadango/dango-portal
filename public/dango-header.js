@@ -6,14 +6,14 @@
  * あらゆるフレームワーク / CSS 環境に <script> 1行で埋め込み可能。
  *
  * ── 使い方 ────────────────────────────────────────────
- *   <script src="https://dango-portal.vercel.app/dango-header.js"></script>
+ *   <script src="https://dango-streamverse.vercel.app/dango-header.js"></script>
  *   <dango-header active-tool="calendar"></dango-header>
  *
  * ── 属性 ─────────────────────────────────────────────
  *   active-tool  : "counter" | "calendar" | "share" | "game"
  *                  省略時は window.location.hostname から自動検出
  *   portal-url   : ポータルのベースURL
- *                  デフォルト: "https://dango-portal.vercel.app"
+ *                  デフォルト: "https://dango-streamverse.vercel.app"
  *
  * ── CSS Custom Properties（ホスト側で上書き可能） ──────
  *   --dg-green   : hsl(150, 85%, 55%)
@@ -610,7 +610,7 @@
     /** ポータルURLの取得 */
     get _portalUrl() {
       return (
-        this.getAttribute("portal-url") || "https://dango-portal.vercel.app"
+        this.getAttribute("portal-url") || "https://dango-streamverse.vercel.app"
       );
     }
 
