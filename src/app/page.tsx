@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import HeroTitle from "@/components/hero-title";
 import HeroCanvas from "@/components/three/hero-canvas";
 import ScrollIndicator from "@/components/scroll-indicator";
@@ -17,6 +17,14 @@ import { DANGO_TOOLS } from "@/lib/tool-data";
  */
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isOgpMode, setIsOgpMode] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      setIsOgpMode(params.get("ogp") === "true");
+    }
+  }, []);
 
   return (
     <div ref={containerRef} className="relative w-full min-h-screen">
@@ -31,7 +39,7 @@ export default function Home() {
       {/* ============================================ */}
       <section className="relative pointer-events-none" id="hero" style={{ zIndex: 10 }}>
         <HeroTitle />
-        <ScrollIndicator />
+        {!isOgpMode && <ScrollIndicator />}
       </section>
 
       {/* ============================================ */}
@@ -75,12 +83,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
-      {/* ============================================ */}
-      {/* ナビゲーションヘッダー */}
-      {/* DOM順序をWebGLキャンバスおよびすべてのセクションの後に配置することで、 */}
-      {/* ブラウザのWebGLレイヤー重ね合わせバグを完全に回避し、常に最前面に描画されます */}
-      {/* ============================================ */}
-      <NavHeader />
+      {!isOgpMode && <NavHeader />}
     </div>
   );
 }

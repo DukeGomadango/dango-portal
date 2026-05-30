@@ -125,3 +125,9 @@ body {
     transform: translate(var(--target-x), var(--target-y)) scale(0.8) rotate(15deg);
   }
 }
+
+/* Next.js 15+ 開発インジケーター（左下のNバッジ）を完全に非表示化 */
+nextjs-portal,
+#nextjs-dev-overlay {
+  display: none !important;
+}

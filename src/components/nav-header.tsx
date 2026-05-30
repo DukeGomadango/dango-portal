@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight, Lock, ShieldCheck } from "lucide-react";
+import { Menu, X, ArrowUpRight, Lock, ShieldCheck, Home } from "lucide-react";
 import { DANGO_TOOLS } from "@/lib/tool-data";
 
 /**
@@ -133,7 +133,11 @@ export default function NavHeader() {
           <div className="w-12 h-1.5 bg-white/10 rounded-full mx-auto" />
 
           {/* ブランドロゴ */}
-          <div className="flex items-center gap-3 justify-center mb-2">
+          <a
+            href="#hero"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center gap-3 justify-center mb-2 active:scale-95 hover:opacity-90 transition-all duration-300 cursor-pointer"
+          >
             <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${activeAccent} p-[1.5px]`}>
               <div className="w-full h-full bg-background rounded-full flex items-center justify-center">
                 <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${activeAccent}`} />
@@ -142,10 +146,29 @@ export default function NavHeader() {
             <span className="font-display text-lg font-black tracking-wider uppercase leading-none bg-gradient-to-r from-slate-50 to-slate-300 bg-clip-text text-transparent">
               DANGO STREAMVERSE
             </span>
-          </div>
+          </a>
 
           {/* ナビゲーションリスト */}
           <nav className="flex flex-col gap-3">
+            {/* ポータルホームへのリンク (モバイル用特別項目) */}
+            <a
+              href="#hero"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/8 active:scale-[0.98] transition-all duration-200 shadow-lg"
+            >
+              <div className="flex flex-col">
+                <span className="font-sans text-[10px] font-bold bg-gradient-to-r from-dango-green via-dango-pink to-dango-yellow bg-clip-text text-transparent uppercase tracking-widest">
+                  PORTAL
+                </span>
+                <span className="font-display text-base font-extrabold tracking-wider text-foreground/90 uppercase">
+                  PORTAL HOME
+                </span>
+              </div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-white/10 text-foreground/80">
+                <Home size={14} />
+              </div>
+            </a>
+
             {DANGO_TOOLS.map((tool) => (
               <a
                 key={tool.id}

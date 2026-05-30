@@ -46,10 +46,10 @@ export default function HeroCanvasInner({ eventSource }: HeroCanvasInnerProps) {
 
       {/* 4つのブランドだんごオブジェクトを配置 */}
       {/* デザインアライメント修正：巨大タイポグラフィを完全に避けるため、画面の四隅の奥に上品に散らばせる */}
-      <DangoCounter position={[-3.2, 1.6, -1.0]} />
-      <DangoCalendar position={[3.2, 1.4, -1.5]} />
-      <DangoShare position={[-2.8, -1.6, -0.8]} />
-      <DangoGame position={[2.8, -1.4, -1.2]} />
+      <DangoCounter position={[-3.8, 1.8, -1.0]} />
+      <DangoCalendar position={[3.8, 1.6, -1.5]} />
+      <DangoShare position={[-3.4, -1.8, -0.8]} />
+      <DangoGame position={[3.4, -1.6, -1.2]} />
     </Canvas>
   );
 }

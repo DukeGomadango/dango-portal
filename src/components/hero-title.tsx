@@ -131,7 +131,7 @@ export default function HeroTitle() {
       {/* 単語内の文字が途中で改行されるのを防ぐため、単語ごとに whitespace-nowrap のコンテナで包み、flex-wrap の gap で単語間隔を制御します */}
       <h1
         ref={titleRef}
-        className="font-display text-[7.5vw] sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em] text-center select-text"
+        className="font-display text-[9vw] sm:text-[8vw] md:text-[7.5vw] lg:text-[6.8vw] font-black tracking-tighter leading-[0.9] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.05em] text-center select-text w-full max-w-full px-4"
         style={{
           pointerEvents: "auto",
         }}
@@ -163,11 +163,10 @@ export default function HeroTitle() {
       {/* サブタイトル */}
       <p
         ref={subtitleRef}
-        className="mt-6 max-w-xl text-lg sm:text-xl text-foreground/60 font-sans font-light tracking-wide opacity-0 pointer-events-auto select-text"
+        className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-foreground/60 font-sans font-light tracking-wide opacity-0 pointer-events-auto select-text px-6"
       >
-        配信を、洗練された体験へ。
-        <br className="sm:hidden" />
-        4つのツールが、ひとつのエコシステムへ。
+        <span className="inline-block">配信を、洗練された体験へ。</span>
+        <span className="inline-block">4つのツールが、ひとつのエコシステムへ。</span>
       </p>
     </div>
   );
