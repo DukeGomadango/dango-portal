@@ -31,7 +31,7 @@ export const DANGO_TOOLS: readonly DangoTool[] = [
       "完全無料で登録不要。人数カウンターやリアルタイム計算チャート、ガチャシミュレーターなど、配信を盛り上げ活動を便利にする「配信者・クリエイター向けWebツールキット」です。",
     features: [
       "ワンタップカウント操作",
-      "OBS向け透過表示（?obs=1）",
+      "テンプレート・目標値",
       "チャート・ガチャなど複数ツール",
       "設定のバックアップ（QR・JSON等）",
     ],
@@ -80,7 +80,7 @@ export const DANGO_TOOLS: readonly DangoTool[] = [
     features: [
       "参加者一覧の管理",
       "推理キャンバス",
-      "配信モード（OBS向け）",
+      "配信モード",
       "同期コードでPC間移行",
     ],
     color: "purple",
