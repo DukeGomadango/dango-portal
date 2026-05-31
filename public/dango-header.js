@@ -85,21 +85,34 @@
 
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   * Google Fonts Injection（ドキュメントに1回だけ挿入）
+   * Self-hosted fonts（portal-url 配下の woff2 — 外部 style-src 不要）
    * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-  var fontsLoaded = false;
-
-  function injectFonts() {
-    if (fontsLoaded) return;
-    fontsLoaded = true;
-    if (document.getElementById("dango-header-fonts")) return;
-    var link = document.createElement("link");
-    link.id = "dango-header-fonts";
-    link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap";
-    document.head.appendChild(link);
+  function buildFontFaceCss(portalUrl) {
+    var base =
+      portalUrl.replace(/\/$/, "") + "/fonts/dango-header/";
+    function face(family, weight, file) {
+      return (
+        "@font-face{font-family:'" +
+        family +
+        "';font-style:normal;font-weight:" +
+        weight +
+        ";font-display:swap;src:url('" +
+        base +
+        file +
+        "') format('woff2');}"
+      );
+    }
+    return [
+      face("Outfit", 500, "outfit-latin-500-normal.woff2"),
+      face("Outfit", 600, "outfit-latin-600-normal.woff2"),
+      face("Outfit", 700, "outfit-latin-700-normal.woff2"),
+      face("Outfit", 900, "outfit-latin-900-normal.woff2"),
+      face("Syne", 700, "syne-latin-700-normal.woff2"),
+      face("Syne", 800, "syne-latin-800-normal.woff2"),
+      /* Syne 900 は 800 にフォールバック（可変ウェイト未配信） */
+      face("Syne", 900, "syne-latin-800-normal.woff2"),
+    ].join("");
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -631,7 +644,6 @@
     /* ── Lifecycle ── */
 
     connectedCallback() {
-      injectFonts();
       this._render();
       this._bind();
       window.addEventListener("scroll", this._boundScroll, { passive: true });
@@ -724,6 +736,7 @@
 
       this.shadowRoot.innerHTML =
         "<style>" +
+        buildFontFaceCss(portalUrl) +
         STYLES +
         "</style>" +
         /* ─── Desktop Header ─── */

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync:header-fonts": "node scripts/sync-dango-header-fonts.mjs",
+    "predev": "npm run sync:header-fonts",
+    "prebuild": "npm run sync:header-fonts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -21,6 +24,8 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "@fontsource/outfit": "^5.2.8",
+    "@fontsource/syne": "^5.2.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
